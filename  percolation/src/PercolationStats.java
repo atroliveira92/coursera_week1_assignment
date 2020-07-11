@@ -31,7 +31,6 @@ public class PercolationStats {
                 }
             }
             threshold[i] = (double) percolation.numberOfOpenSites() / grid;
-            //System.out.println("openSites=" + openSites + " grid=" + grid + " threshold=" + (double) openSites / grid);
         }
 
         mean = StdStats.mean(threshold);
