@@ -49,7 +49,7 @@
       <recent name="$PROJECT_DIR$/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.InteractivePercolationVisualizer">
+  <component name="RunManager" selected="Application.PercolationStats">
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -65,12 +65,13 @@
     <configuration name="PercolationStats" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PercolationStats" />
       <module name="percolation" />
+      <option name="PROGRAM_PARAMETERS" value="2 100000" />
       <method v="2" />
     </configuration>
     <configuration name="PercolationVisualizer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PercolationVisualizer" />
       <module name="percolation" />
-      <option name="PROGRAM_PARAMETERS" value="input50.txt" />
+      <option name="PROGRAM_PARAMETERS" value="input8-dups.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,26 +110,26 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="430" height="466" key="DebuggerActiveHint/0.23.1920.1057@0.23.1920.1057" timestamp="1594441894121" />
-    <state width="1899" height="297" key="GridCell.Tab.0.bottom" timestamp="1594482013881">
+    <state width="1899" height="261" key="GridCell.Tab.0.bottom" timestamp="1594501087143">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1259" height="206" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1594416846807" />
-    <state width="1899" height="297" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1594482013881" />
-    <state width="1899" height="297" key="GridCell.Tab.0.center" timestamp="1594482013881">
+    <state width="1899" height="261" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1594501087143" />
+    <state width="1899" height="261" key="GridCell.Tab.0.center" timestamp="1594501087142">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1259" height="206" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1594416846805" />
-    <state width="1899" height="297" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1594482013881" />
-    <state width="1899" height="297" key="GridCell.Tab.0.left" timestamp="1594482013880">
+    <state width="1899" height="261" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1594501087142" />
+    <state width="1899" height="261" key="GridCell.Tab.0.left" timestamp="1594501087141">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1259" height="206" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1594416846804" />
-    <state width="1899" height="297" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1594482013880" />
-    <state width="1899" height="297" key="GridCell.Tab.0.right" timestamp="1594482013881">
+    <state width="1899" height="261" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1594501087141" />
+    <state width="1899" height="261" key="GridCell.Tab.0.right" timestamp="1594501087142">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1259" height="206" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1594416846806" />
-    <state width="1899" height="297" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1594482013881" />
+    <state width="1899" height="261" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1594501087142" />
     <state width="1899" height="369" key="GridCell.Tab.1.bottom" timestamp="1594482013867">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>

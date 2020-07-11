@@ -23,62 +23,49 @@ public class Percolation {
     }
 
     // opens the site (row, col) if it is not open already
-    // I could place the (row * n) - (n - col) to get the Id in a method. But the Assessment Report says
-    // that the api must match the exactly API, no extra and no missing methods)
     public void open(int row, int col) {
-        if (row <= 0 || row > openArray.length || col <= 0 || col > openArray.length) {
-            throw new IllegalArgumentException("row and column does not match grid index " + n + " by " + n);
-        }
+        validate(row, col);
         // the row,col from method starts with 1, so -1 to open the right sites on array
         openArray[row - 1][col - 1] = true;
         // get the id of the open site
-        int id = (row * n) - (n - col);
+        int id = getId(row, col);
 
         // if open any site from first row, so automatically connect with up virtual root
-        // if open any site from last row, so automatically connect with bottom virtual root
         if (row == 1) {
             uf.union(virtualRootUpSync, id);
-        } else if (row == openArray.length) {
+        }
+        // if open any site from last row, so automatically connect with bottom virtual root
+        if (row == openArray.length) {
             uf.union(virtualRootBottomSync, id);
         }
-        int toUnion;
-
         //check if above site is open to connect
         if (row > 1 && isOpen(row - 1, col)) {
-            toUnion = ((row - 1) * n) - (n - col);
-            uf.union(toUnion, id);
+            uf.union(getId(row - 1, col), id);
         }
         //check if right site is open to connect
         if (col < openArray.length && isOpen(row, col + 1)) {
-            toUnion = (row * n) - (n - (col + 1));
-            uf.union(toUnion, id);
+            uf.union(getId(row, col + 1), id);
         }
         //check if left site is open to connect
         if (col > 1 && isOpen(row, col - 1)) {
-            toUnion = (row * n) - (n - (col - 1));
-            uf.union(toUnion, id);
+            uf.union(getId(row, col - 1), id);
         }
         //check if below site is open to connect
         if (row < openArray.length && isOpen(row + 1, col)) {
-            toUnion = ((row + 1) * n) - (n - col);
-            uf.union(toUnion, id);
+            uf.union(getId(row + 1, col), id);
         }
         openSites++;
     }
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        if (row <= 0 || row > openArray.length || col <= 0 || col > openArray.length) {
-            throw new IllegalArgumentException("row and column does not match grid index " + n + " by " + n);
-        }
+        validate(row, col);
         return openArray[row - 1][col - 1];
     }
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        if (row <= 0 || row > openArray.length || col <= 0 || col > openArray.length) {
-            throw new IllegalArgumentException("row and column does not match grid index " + n + " by " + n);
-        }
+        validate(row, col);
         if (!isOpen(row, col))
             return false;
 
@@ -97,6 +84,16 @@ public class Percolation {
     public boolean percolates() {
         //With virtual roots is easy, just check if bottom and upper root match. If so, the system percolates
         return uf.find(virtualRootUpSync) == uf.find(virtualRootBottomSync);
+    }
+
+    private void validate(int row, int col) {
+        if (row <= 0 || row > openArray.length || col <= 0 || col > openArray.length) {
+            throw new IllegalArgumentException("row and column does not match grid index " + n + " by " + n);
+        }
+    }
+
+    private int getId(int row, int col) {
+        return (row * n) - (n - col);
     }
 
     // test client (optional)
