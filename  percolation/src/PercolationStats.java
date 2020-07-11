@@ -17,7 +17,6 @@ public class PercolationStats {
 
         for (int i = 0; i < trials; i++) {
             Percolation percolation = new Percolation(n);
-            int openSites = 0;
             while (!percolation.percolates()) {
                 int row = StdRandom.uniform(n + 1);
                 int col = StdRandom.uniform(n + 1);
@@ -29,10 +28,9 @@ public class PercolationStats {
                 }
                 if (!percolation.isOpen(row, col)) {
                     percolation.open(row, col);
-                    openSites++;
                 }
             }
-            threshold[i] = (double) openSites / grid;
+            threshold[i] = (double) percolation.numberOfOpenSites() / grid;
             //System.out.println("openSites=" + openSites + " grid=" + grid + " threshold=" + (double) openSites / grid);
         }
 
