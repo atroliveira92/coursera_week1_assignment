@@ -7,10 +7,12 @@ public class Percolation {
     private int openSites = 0;
     private int upSync = 0;
     private int bottomSync;
-    private boolean percolate = false;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("n cannot be < 0");
+        }
         uf = new WeightedQuickUnionUF((n * n) + 2);
         openArray = new boolean[n][n];
         ids = new int[n][n];

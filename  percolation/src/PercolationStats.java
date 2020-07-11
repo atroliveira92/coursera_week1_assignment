@@ -1,17 +1,23 @@
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private int grid;
-    private int trials;
-    private int openSites;
+    private final double mean;
+    private final double stddev;
+    private final double confidenceLo;
+    private final double confidenceHi;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
-        this.grid = n * n;
-        this.trials = trials;
+        if (n <= 0 || trials <= 0) {
+            throw new IllegalArgumentException("n and trial must be > 0");
+        }
+        double[] threshold = new double[trials];
+        int grid = n * n;
 
         for (int i = 0; i < trials; i++) {
             Percolation percolation = new Percolation(n);
+            int openSites = 0;
             while (!percolation.percolates()) {
                 int row = StdRandom.uniform(n + 1);
                 int col = StdRandom.uniform(n + 1);
@@ -21,37 +27,41 @@ public class PercolationStats {
                 if (col <= 0) {
                     col = 1;
                 }
-                System.out.println("row " + row + " column " + col);
                 if (!percolation.isOpen(row, col)) {
                     percolation.open(row, col);
                     percolation.isFull(row, col);
                     openSites++;
                 }
-
             }
+            threshold[i] = (double) openSites / grid;
+            //System.out.println("openSites=" + openSites + " grid=" + grid + " threshold=" + (double) openSites / grid);
         }
 
-        System.out.println("openSites " + openSites + " grid " + grid);
+        mean = StdStats.mean(threshold);
+        stddev = StdStats.stddev(threshold);
+        double aux = 1.96 * stddev / Math.sqrt(trials);
+        confidenceLo = mean - aux;
+        confidenceHi = mean + aux;
     }
 
     // sample mean of percolation threshold
     public double mean() {
-        return (double) openSites / grid;
+        return mean;
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        return 0;
+        return stddev;
     }
 
     // low endpoint of 95% confidence interval
     public double confidenceLo() {
-        return 0;
+        return confidenceLo;
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHi() {
-        return 0;
+        return confidenceHi;
     }
 
 
@@ -59,15 +69,17 @@ public class PercolationStats {
         int n = 20;
         int trial = 1;
 
-//        if (args.length == 2) {
-//            n = Integer.parseInt(args[0]);
-//            trial = Integer.parseInt(args[1]);
-//        }
+        if (args.length == 2) {
+            n = Integer.parseInt(args[0]);
+            trial = Integer.parseInt(args[1]);
+        }
         PercolationStats percolationStats = new PercolationStats(n, trial);
 
         System.out.println("n = " + n + " trial = " + trial);
 
         System.out.println("mean " + percolationStats.mean());
-
+        System.out.println("stddev " + percolationStats.stddev());
+        System.out.println("stddev " + percolationStats.stddev());
+        System.out.println("95% confidence interval [" + percolationStats.confidenceLo() + ", " + percolationStats.confidenceHi() + "]");
     }
 }
