@@ -29,7 +29,6 @@ public class PercolationStats {
                 }
                 if (!percolation.isOpen(row, col)) {
                     percolation.open(row, col);
-                    percolation.isFull(row, col);
                     openSites++;
                 }
             }
@@ -64,7 +63,6 @@ public class PercolationStats {
         return confidenceHi;
     }
 
-
     public static void main(String[] args) {
         int n = 20;
         int trial = 1;
@@ -75,10 +73,7 @@ public class PercolationStats {
         }
         PercolationStats percolationStats = new PercolationStats(n, trial);
 
-        System.out.println("n = " + n + " trial = " + trial);
-
         System.out.println("mean " + percolationStats.mean());
-        System.out.println("stddev " + percolationStats.stddev());
         System.out.println("stddev " + percolationStats.stddev());
         System.out.println("95% confidence interval [" + percolationStats.confidenceLo() + ", " + percolationStats.confidenceHi() + "]");
     }
